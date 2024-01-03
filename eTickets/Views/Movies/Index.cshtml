@@ -28,13 +28,22 @@
                     <div class="col-md-6">
                         <div class="card-body">
                             <p class="card-text">@item.Description</p>
-                            <p class="card-text"><b>Cinema: </b>Sample Name</p>
-                            <p class="card-text"><b>Category: </b>Sample</p>
-                            <p class="card-text"><b>Start Date: </b>Sample Date</p>
-                            <p class="card-text"><b>End Date: </b>Sample Date</p>
+                            <p class="card-text"><b>Cinema: </b>@item.Cinema.Name</p>
+                            <p class="card-text"><b>Category: </b>@item.MovieCategory</p>
+                            <p class="card-text"><b>Start Date: </b>@item.StartDate.ToString("dd MMM yy")</p>
+                            <p class="card-text"><b>End Date: </b>@item.EndDate.ToString("dd MMM yy")</p>
                             <p class="card-text ">
                                 <b>Status: </b>
-                                Status Sample
+                                @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
+                                {
+                                    <span class="badge bg-success text-white">AVAILABLE</span>
+                                } else if (DateTime.Now > item.EndDate)
+                                {
+                                    <span class="badge bg-danger text-white">EXPIRED</span>
+                                } else
+                                {
+                                <span class="badge bg-primary text-white">UPCOMING</span>
+                                }
                             </p>
 
                         </div>
